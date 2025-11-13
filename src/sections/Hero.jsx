@@ -23,7 +23,10 @@ const Hero = () => {
   return (
     <section id="Hero" className="relative overflow-hidden">
       <div className="absolute top-0 left-0 z-10">
-        <img src="/images/bg.png" alt="Background" />
+        <img
+          src={`${import.meta.env.BASE_URL}/images/bg.png`}
+          alt="Background"
+        />
       </div>
 
       <div className="hero-layout">

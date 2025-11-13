@@ -16,8 +16,8 @@ const LogoSection = () => {
       <div className="gradient-edge" />
       <div className="marquee h-52">
         <div className="marquee-box md:gap-12 gap-5">
-          {logoIconsList.map((icon) => (
-            <Logoicon key={icon.name} icon={icon} />
+          {logoIconsList.map((icon, index) => (
+            <Logoicon key={`${icon.name}-${index}`} icon={icon} />
           ))}
         </div>
       </div>

@@ -18,10 +18,10 @@ const navLinks = [
 ];
 
 const words = [
-  { text: "Ideas", imgPath: "/images/ideas.svg" },
-  { text: "Concepts", imgPath: "/images/concepts.svg" },
-  { text: "Designs", imgPath: "/images/designs.svg" },
-  { text: "Code", imgPath: "/images/code.svg" },
+  { text: "Ideas", imgPath: `${import.meta.env.BASE_URL}/images/ideas.svg` },
+  { text: "Concepts", imgPath: `${import.meta.env.BASE_URL}/images/concepts.svg` },
+  { text: "Designs", imgPath: `${import.meta.env.BASE_URL}/images/designs.svg` },
+  { text: "Code", imgPath: `${import.meta.env.BASE_URL}/images/code.svg` },
 ];
 
 const counterItems = [
@@ -33,53 +33,53 @@ const counterItems = [
 
 const logoIconsList = [
   {
-    imgPath: "/images/logos/company-logo-1.png",
+    imgPath: `${import.meta.env.BASE_URL}/images/logos/company-logo-1.png`,
   },
   {
-    imgPath: "/images/logos/company-logo-2.png",
+    imgPath: `${import.meta.env.BASE_URL}/images/logos/company-logo-2.png`,
   },
   {
-    imgPath: "/images/logos/company-logo-3.png",
+    imgPath: `${import.meta.env.BASE_URL}/images/logos/company-logo-3.png`,
   },
   {
-    imgPath: "/images/logos/company-logo-4.png",
+    imgPath: `${import.meta.env.BASE_URL}/images/logos/company-logo-4.png`,
   },
   {
-    imgPath: "/images/logos/company-logo-5.png",
+    imgPath: `${import.meta.env.BASE_URL}/images/logos/company-logo-5.png`,
   },
   {
-    imgPath: "/images/logos/company-logo-6.png",
+    imgPath: `${import.meta.env.BASE_URL}/images/logos/company-logo-6.png`,
   },
   {
-    imgPath: "/images/logos/company-logo-7.png",
+    imgPath: `${import.meta.env.BASE_URL}/images/logos/company-logo-7.png`,
   },
   {
-    imgPath: "/images/logos/company-logo-8.png",
+    imgPath: `${import.meta.env.BASE_URL}/images/logos/company-logo-8.png`,
   },
   {
-    imgPath: "/images/logos/company-logo-9.png",
+    imgPath: `${import.meta.env.BASE_URL}/images/logos/company-logo-9.png`,
   },
   {
-    imgPath: "/images/logos/company-logo-10.png",
+    imgPath: `${import.meta.env.BASE_URL}/images/logos/company-logo-10.png`,
   },
   {
-    imgPath: "/images/logos/company-logo-11.png",
+    imgPath: `${import.meta.env.BASE_URL}/images/logos/company-logo-11.png`,
   },
 ];
 
 const abilities = [
   {
-    imgPath: "/images/seo.png",
+    imgPath: `${import.meta.env.BASE_URL}/images/seo.png`,
     title: "Quality Focus",
     desc: "Delivering high-quality results while maintaining attention to every detail.",
   },
   {
-    imgPath: "/images/chat.png",
+    imgPath: `${import.meta.env.BASE_URL}/images/chat.png`,
     title: "Reliable Communication",
     desc: "Keeping you updated at every step to ensure transparency and clarity.",
   },
   {
-    imgPath: "/images/time.png",
+    imgPath: `${import.meta.env.BASE_URL}/images/time.png`,
     title: "On-Time Delivery",
     desc: "Making sure projects are completed on schedule, with quality & attention to detail.",
   },
@@ -88,23 +88,23 @@ const abilities = [
 const techStackImgs = [
   {
     name: "React Developer",
-    imgPath: "/images/logos/react.png",
+    imgPath: `${import.meta.env.BASE_URL}/images/logos/react.png`,
   },
   {
     name: "Python Developer",
-    imgPath: "/images/logos/python.svg",
+    imgPath: `${import.meta.env.BASE_URL}/images/logos/python.svg`,
   },
   {
     name: "Backend Developer",
-    imgPath: "/images/logos/node.png",
+    imgPath: `${import.meta.env.BASE_URL}/images/logos/node.png`,
   },
   {
     name: "Interactive Developer",
-    imgPath: "/images/logos/three.png",
+    imgPath: `${import.meta.env.BASE_URL}/images/logos/three.png`,
   },
   {
     name: "Project Manager",
-    imgPath: "/images/logos/git.svg",
+    imgPath: `${import.meta.env.BASE_URL}/images/logos/git.svg`,
   },
 ];
 
@@ -145,8 +145,8 @@ const expCards = [
   {
     review:
       "Adrian brought creativity and technical expertise to the team, significantly improving our frontend performance. His work has been invaluable in delivering faster experiences.",
-    imgPath: "/images/exp1.png",
-    logoPath: "/images/logo1.png",
+    imgPath: `${import.meta.env.BASE_URL}/images/exp1.png`,
+    logoPath: `${import.meta.env.BASE_URL}/images/logo1.png`,
     title: "Frontend Developer",
     date: "January 2023 - Present",
     responsibilities: [
@@ -158,8 +158,8 @@ const expCards = [
   {
     review:
       "Adrian’s contributions to Docker's web applications have been outstanding. He approaches challenges with a problem-solving mindset.",
-    imgPath: "/images/exp2.png",
-    logoPath: "/images/logo2.png",
+    imgPath: `${import.meta.env.BASE_URL}/images/exp2.png`,
+    logoPath: `${import.meta.env.BASE_URL}/images/logo2.png`,
     title: "Full Stack Developer",
     date: "June 2020 - December 2023",
     responsibilities: [
@@ -171,8 +171,8 @@ const expCards = [
   {
     review:
       "Adrian’s work on Appwrite’s mobile app brought a high level of quality and efficiency. He delivered solutions that enhanced our mobile experience & meet our product goals.",
-    imgPath: "/images/exp3.png",
-    logoPath: "/images/logo3.png",
+    imgPath: `${import.meta.env.BASE_URL}/images/exp3.png`,
+    logoPath: `${import.meta.env.BASE_URL}/images/logo3.png`,
     title: "React Native Developer",
     date: "March 2019 - May 2020",
     responsibilities: [
