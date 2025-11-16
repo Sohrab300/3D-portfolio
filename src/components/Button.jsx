@@ -3,7 +3,7 @@ import React from "react";
 const Button = ({ className, id, text }) => {
   return (
     <a
-      onClick={() => {
+      onClick={(e) => {
         e.preventDefault();
         console.log("Button clicked");
         const target = document.getElementById("counter");
