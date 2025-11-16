@@ -200,6 +200,7 @@ const expLogos = [
 
 const testimonials = [
   {
+    id: 1,
     name: "Esther Howard",
     mentions: "@estherhoward",
     review:
@@ -207,6 +208,7 @@ const testimonials = [
     imgPath: `${import.meta.env.BASE_URL}/images/client1.png`,
   },
   {
+    id: 2,
     name: "Wade Warren",
     mentions: "@wadewarren",
     review:
@@ -214,6 +216,7 @@ const testimonials = [
     imgPath: `${import.meta.env.BASE_URL}/images/client3.png`,
   },
   {
+    id: 3,
     name: "Guy Hawkins",
     mentions: "@guyhawkins",
     review:
@@ -221,6 +224,7 @@ const testimonials = [
     imgPath: `${import.meta.env.BASE_URL}/images/client2.png`,
   },
   {
+    id: 4,
     name: "Marvin McKinney",
     mentions: "@marvinmckinney",
     review:
@@ -228,6 +232,7 @@ const testimonials = [
     imgPath: `${import.meta.env.BASE_URL}/images/client5.png`,
   },
   {
+    id: 5,
     name: "Floyd Miles",
     mentions: "@floydmiles",
     review:
@@ -235,6 +240,7 @@ const testimonials = [
     imgPath: `${import.meta.env.BASE_URL}/images/client4.png`,
   },
   {
+    id: 6,
     name: "Albert Flores",
     mentions: "@albertflores",
     review:

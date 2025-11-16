@@ -13,8 +13,8 @@ const Testimonials = () => {
         />
 
         <div className="lg:columns-3 md:columns-2 columns-1 mt-16">
-          {testimonials.map(({ imgPath, name, review, mentions }) => (
-            <GlowCard card={{ review }}>
+          {testimonials.map(({ imgPath, name, review, mentions, id }) => (
+            <GlowCard card={{ review }} key={id}>
               <div className="flex items-center gap-3">
                 <div className="">
                   <img src={imgPath} alt={name} />
