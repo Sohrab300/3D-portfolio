@@ -17,7 +17,7 @@ const Hero = () => {
         duration: 1,
         ease: "power2.inOut",
         stagger: 0.2,
-      }
+      },
     );
   });
   return (

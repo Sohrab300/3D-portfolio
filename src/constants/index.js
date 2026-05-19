@@ -19,15 +19,21 @@ const navLinks = [
 
 const words = [
   { text: "Ideas", imgPath: `${import.meta.env.BASE_URL}/images/ideas.svg` },
-  { text: "Concepts", imgPath: `${import.meta.env.BASE_URL}/images/concepts.svg` },
-  { text: "Designs", imgPath: `${import.meta.env.BASE_URL}/images/designs.svg` },
+  {
+    text: "Concepts",
+    imgPath: `${import.meta.env.BASE_URL}/images/concepts.svg`,
+  },
+  {
+    text: "Designs",
+    imgPath: `${import.meta.env.BASE_URL}/images/designs.svg`,
+  },
   { text: "Code", imgPath: `${import.meta.env.BASE_URL}/images/code.svg` },
 ];
 
 const counterItems = [
-  { value: 15, suffix: "+", label: "Years of Experience" },
-  { value: 200, suffix: "+", label: "Satisfied Clients" },
-  { value: 108, suffix: "+", label: "Completed Projects" },
+  { value: 2, suffix: "+", label: "Years of Experience" },
+  { value: 7, suffix: "+", label: "Satisfied Clients" },
+  { value: 10, suffix: "+", label: "Completed Projects" },
   { value: 90, suffix: "%", label: "Client Retention Rate" },
 ];
 
