@@ -7,6 +7,7 @@ import ContactExperience from "../components/ContactExperience";
 const Contact = () => {
   const formRef = useRef(null);
   const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState(null);
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -16,11 +17,13 @@ const Contact = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
+    if (status) setStatus(null);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true); // Show loading state
+    setStatus(null);
 
     try {
       await emailjs.sendForm(
@@ -32,8 +35,16 @@ const Contact = () => {
 
       // Reset form and stop loading
       setForm({ name: "", email: "", message: "" });
+      setStatus({
+        type: "success",
+        message: "Message sent successfully. I’ll get back to you soon.",
+      });
     } catch (error) {
       console.error("EmailJS Error:", error); // Optional: show toast
+      setStatus({
+        type: "error",
+        message: "Message failed to send. Please try again.",
+      });
     } finally {
       setLoading(false); // Always stop loading, even on error
     }
@@ -93,7 +104,7 @@ const Contact = () => {
                   />
                 </div>
 
-                <button type="submit">
+                <button type="submit" disabled={loading}>
                   <div className="cta-button group">
                     <div className="bg-circle" />
                     <p className="text">
@@ -109,6 +120,17 @@ const Contact = () => {
                     </div>
                   </div>
                 </button>
+                {status && (
+                  <p
+                    className={`text-sm ${
+                      status.type === "success"
+                        ? "text-green-400"
+                        : "text-red-400"
+                    }`}
+                  >
+                    {status.message}
+                  </p>
+                )}
               </form>
             </div>
           </div>

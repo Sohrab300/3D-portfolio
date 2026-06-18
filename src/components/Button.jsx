@@ -3,10 +3,10 @@ import React from "react";
 const Button = ({ className, id, text }) => {
   return (
     <a
+      href={id ? `#${id}` : undefined}
       onClick={(e) => {
         e.preventDefault();
-        console.log("Button clicked");
-        const target = document.getElementById("counter");
+        const target = document.getElementById(id) ?? document.getElementById("counter");
         if (target && id) {
           const offset = window.innerHeight * 0.15;
           const top =

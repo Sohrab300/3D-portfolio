@@ -1,4 +1,3 @@
-import React, { use } from "react";
 import { words } from "../constants";
 import Button from "../components/Button";
 import HeroExperience from "../components/HeroModals/HeroExperience";
@@ -21,7 +20,7 @@ const Hero = () => {
     );
   });
   return (
-    <section id="Hero" className="relative overflow-hidden">
+    <section id="hero" className="relative overflow-hidden">
       <div className="absolute top-0 left-0 z-10">
         <img
           src={`${import.meta.env.BASE_URL}/images/bg.png`}
@@ -63,7 +62,7 @@ const Hero = () => {
             </p>
             <Button
               className="md:w-80 md:h-16 w-60 h-12"
-              id="button"
+              id="counter"
               text="See my work"
             />
           </div>

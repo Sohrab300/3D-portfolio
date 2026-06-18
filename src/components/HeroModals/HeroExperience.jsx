@@ -2,7 +2,6 @@ import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import { useMediaQuery } from "react-responsive";
 import { Room } from "./Room";
-import Hero from "../../sections/Hero";
 import HeroLights from "./HeroLights";
 import Particles from "./Particles";
 
