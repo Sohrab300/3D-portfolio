@@ -5,6 +5,12 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
+const projectLinks = {
+  project1: "https://devschedule.in",
+  project2: "https://ragya.com",
+  project3: "https://sohrab300.github.io/Video-Call-WebApp/",
+};
+
 const Showcase = () => {
   const sectionRef = useRef(null);
   const project1Ref = useRef(null);
@@ -31,7 +37,7 @@ const Showcase = () => {
             trigger: card,
             start: "top bottom-=100",
           },
-        }
+        },
       );
     });
 
@@ -41,7 +47,7 @@ const Showcase = () => {
       {
         opacity: 1,
         duration: 1.5,
-      }
+      },
     );
   }, []);
 
@@ -51,42 +57,69 @@ const Showcase = () => {
         <div className="showcaselayout">
           {/* Left */}
           <div className="first-project-wrapper" ref={project1Ref}>
-            <div className="image-wrapper">
-              <img
-                src={`${import.meta.env.BASE_URL}/images/project1.png`}
-                alt="Ryde"
-              />
-            </div>
+            <a
+              href={projectLinks.project1}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Open Library Management Platform"
+              className="image-wrapper shuffle-image-wrapper block"
+            >
+                <img
+                  src={`${import.meta.env.BASE_URL}/images/project2-2.png`}
+                  alt="Library Management Platform dashboard"
+                  className="shuffle-image shuffle-image-back"
+                />
+                <img
+                  src={`${import.meta.env.BASE_URL}/images/project2-1.png`}
+                  alt="Library Management Platform preview"
+                  className="shuffle-image shuffle-image-front"
+                />
+            </a>
             <div className="text-content">
-              <h2>
-                On-Demand Rides Made Simple with a Powerful, User-Friendly App
-                called Ryde
-              </h2>
+              <a href={projectLinks.project1} target="_blank" rel="noreferrer">
+                <h2>Library Management Platform</h2>
+              </a>
               <p className="text-white-50 md:text-xl">
-                An app built with React Native, Expo, & TailwindCSS for a fast,
-                user-friendly experience.
+                A full-stack library management platform designed for browsing,
+                borrowing, and managing books with a clean user experience.
               </p>
             </div>
           </div>
           {/* Right */}
           <div className="project-list-wrapper overflow-hidden">
             <div className="project" ref={project2Ref}>
-              <div className="image-wrapper bg-[#ffefdb]">
+              <a
+                href={projectLinks.project2}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Open Ryde project"
+                className="image-wrapper bg-[#f34204] block"
+              >
                 <img
-                  src={`${import.meta.env.BASE_URL}/images/project2.png`}
-                  alt="Library Management Platform"
+                  src={`${import.meta.env.BASE_URL}/images/project1.png`}
+                  alt="Ryde"
                 />
-              </div>
-              <h2>Library Management Platform</h2>
+              </a>
+              <a href={projectLinks.project2} target="_blank" rel="noreferrer">
+                <h2>On-Demand Rides Made Simple with Ryde</h2>
+              </a>
             </div>
             <div className="project" ref={project3Ref}>
-              <div className="image-wrapper bg-[#ffe7eb]">
+              <a
+                href={projectLinks.project3}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Open YC Directory project"
+                className="image-wrapper bg-[#e4abec] p-2 block"
+              >
                 <img
                   src={`${import.meta.env.BASE_URL}/images/project3.png`}
                   alt="YC Directory"
                 />
-              </div>
-              <h2>YC Directory - A Startup Showcase App</h2>
+              </a>
+              <a href={projectLinks.project3} target="_blank" rel="noreferrer">
+                <h2>YC Directory - A Startup Showcase App</h2>
+              </a>
             </div>
           </div>
         </div>

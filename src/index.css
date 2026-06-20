@@ -170,6 +170,34 @@ section {
         img {
           @apply w-full h-full object-cover rounded-xl absolute inset-0;
         }
+
+        &.shuffle-image-wrapper {
+          @apply overflow-hidden rounded-xl bg-[#0383f8];
+
+          .shuffle-image {
+            @apply w-[82%] h-[78%] object-cover rounded-xl absolute left-1/2 top-1/2 shadow-2xl transition-all duration-700 ease-in-out;
+          }
+
+          .shuffle-image-back {
+            @apply z-10 opacity-90;
+            transform: translate(-44%, -44%) rotate(4deg) scale(0.94);
+          }
+
+          .shuffle-image-front {
+            @apply z-20;
+            transform: translate(-56%, -56%) rotate(-3deg) scale(1);
+          }
+
+          &:hover .shuffle-image-front {
+            @apply z-10 opacity-90;
+            transform: translate(-44%, -44%) rotate(4deg) scale(0.94);
+          }
+
+          &:hover .shuffle-image-back {
+            @apply z-20 opacity-100;
+            transform: translate(-56%, -56%) rotate(-3deg) scale(1);
+          }
+        }
       }
 
       .text-content {
@@ -442,7 +470,8 @@ section {
   border: 2px solid transparent;
   background: var(--gradient);
   background-attachment: fixed;
-  mask: linear-gradient(#0000, #0000),
+  mask:
+    linear-gradient(#0000, #0000),
     conic-gradient(
       from calc((var(--start) - 15) * 1deg),
       #ffffff1f 0deg,
