@@ -151,9 +151,9 @@ const expCards = [
   {
     review:
       "Independently architected and delivered a full-stack product that converts user-uploaded images into 3D-printable shadow lamp STL files; end to end from backend to user-facing interface.",
-    imgPath: `${import.meta.env.BASE_URL}/images/MSH_logo.png`,
-    logoPath: `${import.meta.env.BASE_URL}/images/MSH_logo.png`,
-    title: "React Developer Intern",
+    imgPath: `${import.meta.env.BASE_URL}/images/CW_long_Logo.svg`,
+    logoPath: `${import.meta.env.BASE_URL}/images/CW_logo.png`,
+    title: "Freelance Full-Stack Developer",
     date: "June 2026 - present",
     responsibilities: [
       "Built the entire backend from scratch using FastAPI and Docker, deployed on Google Cloud Run with request-based billing for cost efficiency.",
@@ -165,53 +165,56 @@ const expCards = [
   {
     review:
       "Sole developer responsible for delivering a complete, production-ready website from zero to deployment based on client-provided Figma designs.",
-    imgPath: `${import.meta.env.BASE_URL}/images/MW_logo.png`,
+    imgPath: `${import.meta.env.BASE_URL}/images/MW_long_logo.png`,
     logoPath: `${import.meta.env.BASE_URL}/images/MW_logo.png`,
-    title: "Junior Web Developer",
-    date: "June 2022 - December 2022",
+    title: "Freelance Full-Stack Developer",
+    date: "March 2026 - April 2026",
     responsibilities: [
-      "Coded pixel-perfect HTML/CSS designs with responsive behaviors for various device breakpoints.",
-      "Implemented interactive dynamic features using JavaScript, React, and transition libraries.",
-      "Optimized website load times and SEO metadata to improve overall search rankings and user retention.",
+      "Built the entire website from scratch using React and Node.js, translating Figma mockups into a fully functional, responsive web application.",
+      "Integrated Supabase for backend data management, handling authentication and persistent storage for the platform's core features.",
+      "Delivered the complete product independently, managing client communication, requirements gathering, and iterative feedback cycles end to end.",
     ],
   },
   {
     review:
-      "Led technical initiatives at AS, building modern single-page applications and backend REST APIs for diverse client requirements.",
-    imgPath: `${import.meta.env.BASE_URL}/images/AS_logo.png`,
+      "Engaged as a freelance developer to improve frontend quality and performance of an existing web product.",
+    imgPath: `${import.meta.env.BASE_URL}/images/AS_long_logo.png`,
     logoPath: `${import.meta.env.BASE_URL}/images/AS_logo.png`,
-    title: "Full Stack Engineer",
-    date: "January 2023 - May 2023",
+    title: "Freelance Frontend Developer",
+    date: "February 2026 - March 2026",
     responsibilities: [
-      "Architected clean, scalable React frontend architectures with Tailwind CSS and state management.",
-      "Designed robust backend APIs using Node.js and Express to handle concurrent user interactions.",
-      "Managed databases and optimized schema design to improve query performance and reduce load times.",
+      "Translated Figma mockups into pixel-perfect, responsive page sections, enhancing the visual consistency of the existing product.",
+      "Conducted a performance audit and implemented optimizations that improved the Lighthouse performance score from 65 to 90, including asset optimization, lazy loading, and code splitting.",
+      "Implemented pagination on the blog listing page, reducing initial load times and improving perceived performance for content-heavy pages.",
     ],
   },
   {
     review:
-      "Helped build and scale Ragya's music streaming web and mobile platform services, focusing on user experience, smooth playback interfaces, and backend integration.",
-    imgPath: `${import.meta.env.BASE_URL}/images/ragya_logo.jpeg`,
+      "Owned the frontend of a Hindustani Classical Music streaming platform, driving features across web and mobile from UI to backend integration.",
+    imgPath: `${import.meta.env.BASE_URL}/images/ragya_long_logo.png`,
     logoPath: `${import.meta.env.BASE_URL}/images/ragya_logo.jpeg`,
-    title: "Frontend Developer",
-    date: "June 2023 - December 2023",
+    title: "Software Engineer",
+    date: "October 2024 - December 2025",
     responsibilities: [
-      "Designed and implemented high-fidelity UI features for web and mobile streaming portals.",
-      "Integrated audio streaming APIs and optimized state management for zero-latency playback transitions.",
-      "Maintained responsive layouts and worked closely with design and QA teams to iron out bugs.",
+      "Converted playlist pages from CSR to SSR using Next.js, significantly improving load times and enabling rich link previews for shared playlist URLs.",
+      "Built a full-featured search system integrated with GraphQL, allowing users to query songs across the entire database by multiple categories directly from the navbar.",
+      "Developed a song-level sharing feature, extending the platform's existing playlist-sharing functionality to individual tracks.",
+      "Integrated audio streaming APIs and optimized Redux state management for seamless, low-latency playback transitions across web and mobile (React Native).",
+      "Collaborated on backend tasks using Ruby on Rails; writing database migrations and exposing REST endpoints consumed by the frontend.",
+      "Maintained responsive, high-fidelity UI components built with MUI, aligned to Figma mockups, with data sourced from AWS S3 and deployed via AWS Amplify.",
     ],
   },
   {
     review:
-      "Contributed to space technology projects at ISRO, working with research teams to build and optimize software solutions for space missions and satellite data processing.",
+      "Contributed to the national-scale Riparian Buffer Mapping of Indian Rivers project under ISRO's Remote Sensing and GIS division.",
     imgPath: `${import.meta.env.BASE_URL}/images/isro_logo.png`,
     logoPath: `${import.meta.env.BASE_URL}/images/isro_logo.png`,
-    title: "Software Engineer",
-    date: "January 2024 - Present",
+    title: "Project Trainee",
+    date: "March 2024 - June 2024",
     responsibilities: [
-      "Collaborated on core software modules for satellite telemetry and payload data processing.",
-      "Developed high-performance algorithms to analyze geospatial and atmospheric datasets.",
-      "Ensured software reliability and performance through strict testing protocols and code optimization.",
+      "Acquired and preprocessed multi-temporal satellite imagery from Google Earth Engine, covering river corridors and riparian vegetation across India.",
+      "Processed and analyzed geospatial datasets using Python (NumPy, Pandas, Rasterio/GDAL) in Google Colab to extract river boundary and tree cover data.",
+      "Manually delineated riparian buffer zones on both banks of rivers using ArcGIS and QGIS, ensuring spatial accuracy across large geographic extents.",
     ],
   },
 ];
@@ -293,22 +296,17 @@ const testimonials = [
 const socialImgs = [
   {
     name: "insta",
-    url: "https://www.instagram.com/",
+    url: "https://www.instagram.com/sourabhsheikh/",
     imgPath: `${import.meta.env.BASE_URL}/images/insta.png`,
   },
   {
-    name: "fb",
-    url: "https://www.facebook.com/",
-    imgPath: `${import.meta.env.BASE_URL}/images/fb.png`,
-  },
-  {
-    name: "x",
-    url: "https://www.x.com/",
-    imgPath: `${import.meta.env.BASE_URL}/images/x.png`,
+    name: "GitHub",
+    url: "https://www.github.com/Sohrab300",
+    imgPath: `${import.meta.env.BASE_URL}/images/github.svg`,
   },
   {
     name: "linkedin",
-    url: "https://www.linkedin.com/",
+    url: "https://www.linkedin.com/in/sohrab-sheikh-139166249/",
     imgPath: `${import.meta.env.BASE_URL}/images/linkedin.png`,
   },
 ];

@@ -8,7 +8,7 @@ gsap.registerPlugin(ScrollTrigger);
 const projectLinks = {
   project1: "https://devschedule.in",
   project2: "https://ragya.com",
-  project3: "https://sohrab300.github.io/Video-Call-WebApp/",
+  project3: "https://shadow-craft-bay.vercel.app/",
 };
 
 const Showcase = () => {
@@ -64,24 +64,25 @@ const Showcase = () => {
               aria-label="Open Library Management Platform"
               className="image-wrapper shuffle-image-wrapper block"
             >
-                <img
-                  src={`${import.meta.env.BASE_URL}/images/project2-2.png`}
-                  alt="Library Management Platform dashboard"
-                  className="shuffle-image shuffle-image-back"
-                />
-                <img
-                  src={`${import.meta.env.BASE_URL}/images/project2-1.png`}
-                  alt="Library Management Platform preview"
-                  className="shuffle-image shuffle-image-front"
-                />
+              <img
+                src={`${import.meta.env.BASE_URL}/images/project2-2.png`}
+                alt="Library Management Platform dashboard"
+                className="shuffle-image shuffle-image-back"
+              />
+              <img
+                src={`${import.meta.env.BASE_URL}/images/project2-1.png`}
+                alt="Library Management Platform preview"
+                className="shuffle-image shuffle-image-front"
+              />
             </a>
             <div className="text-content">
               <a href={projectLinks.project1} target="_blank" rel="noreferrer">
-                <h2>Library Management Platform</h2>
+                <h2>Dev Schedule (Calendly Clone)</h2>
               </a>
               <p className="text-white-50 md:text-xl">
-                A full-stack library management platform designed for browsing,
-                borrowing, and managing books with a clean user experience.
+                A full-stack appointment booking platform designed for
+                scheduling, booking, and managing appointments with a clean user
+                experience.
               </p>
             </div>
           </div>
@@ -101,7 +102,9 @@ const Showcase = () => {
                 />
               </a>
               <a href={projectLinks.project2} target="_blank" rel="noreferrer">
-                <h2>On-Demand Rides Made Simple with Ryde</h2>
+                <h2>
+                  Your one stop destination for Hindustani Classical Music
+                </h2>
               </a>
             </div>
             <div className="project" ref={project3Ref}>
@@ -113,12 +116,12 @@ const Showcase = () => {
                 className="image-wrapper bg-[#e4abec] p-2 block"
               >
                 <img
-                  src={`${import.meta.env.BASE_URL}/images/project3.png`}
+                  src={`${import.meta.env.BASE_URL}/images/project-3.png`}
                   alt="YC Directory"
                 />
               </a>
               <a href={projectLinks.project3} target="_blank" rel="noreferrer">
-                <h2>YC Directory - A Startup Showcase App</h2>
+                <h2>Shadow Craft Lamp - A 3D-Printed Lamp Ordering Website</h2>
               </a>
             </div>
           </div>
