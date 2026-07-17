@@ -150,57 +150,92 @@ const techStackIcons = [
 const expCards = [
   {
     review:
-      "Adrian brought creativity and technical expertise to the team, significantly improving our frontend performance. His work has been invaluable in delivering faster experiences.",
-    imgPath: `${import.meta.env.BASE_URL}/images/exp1.png`,
-    logoPath: `${import.meta.env.BASE_URL}/images/logo1.png`,
+      "Independently architected and delivered a full-stack product that converts user-uploaded images into 3D-printable shadow lamp STL files; end to end from backend to user-facing interface.",
+    imgPath: `${import.meta.env.BASE_URL}/images/MSH_logo.png`,
+    logoPath: `${import.meta.env.BASE_URL}/images/MSH_logo.png`,
+    title: "React Developer Intern",
+    date: "June 2026 - present",
+    responsibilities: [
+      "Built the entire backend from scratch using FastAPI and Docker, deployed on Google Cloud Run with request-based billing for cost efficiency.",
+      "Engineered an image processing pipeline (rembg, Potrace, Pillow) to convert user-uploaded photos and SVGs into clean vector paths fed into OpenSCAD for parametric 3D model generation.",
+      "Developed the frontend in React, Vite, and TypeScript with a React Three Fiber 3D viewer, allowing users to preview lamp shapes in real time before ordering.",
+      "Integrated Supabase for order tracking and user data persistence, enabling end-to-end order management from upload to fulfillment.",
+    ],
+  },
+  {
+    review:
+      "Sole developer responsible for delivering a complete, production-ready website from zero to deployment based on client-provided Figma designs.",
+    imgPath: `${import.meta.env.BASE_URL}/images/MW_logo.png`,
+    logoPath: `${import.meta.env.BASE_URL}/images/MW_logo.png`,
+    title: "Junior Web Developer",
+    date: "June 2022 - December 2022",
+    responsibilities: [
+      "Coded pixel-perfect HTML/CSS designs with responsive behaviors for various device breakpoints.",
+      "Implemented interactive dynamic features using JavaScript, React, and transition libraries.",
+      "Optimized website load times and SEO metadata to improve overall search rankings and user retention.",
+    ],
+  },
+  {
+    review:
+      "Led technical initiatives at AS, building modern single-page applications and backend REST APIs for diverse client requirements.",
+    imgPath: `${import.meta.env.BASE_URL}/images/AS_logo.png`,
+    logoPath: `${import.meta.env.BASE_URL}/images/AS_logo.png`,
+    title: "Full Stack Engineer",
+    date: "January 2023 - May 2023",
+    responsibilities: [
+      "Architected clean, scalable React frontend architectures with Tailwind CSS and state management.",
+      "Designed robust backend APIs using Node.js and Express to handle concurrent user interactions.",
+      "Managed databases and optimized schema design to improve query performance and reduce load times.",
+    ],
+  },
+  {
+    review:
+      "Helped build and scale Ragya's music streaming web and mobile platform services, focusing on user experience, smooth playback interfaces, and backend integration.",
+    imgPath: `${import.meta.env.BASE_URL}/images/ragya_logo.jpeg`,
+    logoPath: `${import.meta.env.BASE_URL}/images/ragya_logo.jpeg`,
     title: "Frontend Developer",
-    date: "January 2023 - Present",
+    date: "June 2023 - December 2023",
     responsibilities: [
-      "Developed and maintained user-facing features for the Hostinger website.",
-      "Collaborated closely with UI/UX designers to ensure seamless user experiences.",
-      "Optimized web applications for maximum speed and scalability.",
+      "Designed and implemented high-fidelity UI features for web and mobile streaming portals.",
+      "Integrated audio streaming APIs and optimized state management for zero-latency playback transitions.",
+      "Maintained responsive layouts and worked closely with design and QA teams to iron out bugs.",
     ],
   },
   {
     review:
-      "Adrian’s contributions to Docker's web applications have been outstanding. He approaches challenges with a problem-solving mindset.",
-    imgPath: `${import.meta.env.BASE_URL}/images/exp2.png`,
-    logoPath: `${import.meta.env.BASE_URL}/images/logo2.png`,
-    title: "Full Stack Developer",
-    date: "June 2020 - December 2023",
+      "Contributed to space technology projects at ISRO, working with research teams to build and optimize software solutions for space missions and satellite data processing.",
+    imgPath: `${import.meta.env.BASE_URL}/images/isro_logo.png`,
+    logoPath: `${import.meta.env.BASE_URL}/images/isro_logo.png`,
+    title: "Software Engineer",
+    date: "January 2024 - Present",
     responsibilities: [
-      "Led the development of Docker's web applications, focusing on scalability.",
-      "Worked with backend engineers to integrate APIs seamlessly with the frontend.",
-      "Contributed to open-source projects that were used with the Docker ecosystem.",
-    ],
-  },
-  {
-    review:
-      "Adrian’s work on Appwrite’s mobile app brought a high level of quality and efficiency. He delivered solutions that enhanced our mobile experience & meet our product goals.",
-    imgPath: `${import.meta.env.BASE_URL}/images/exp3.png`,
-    logoPath: `${import.meta.env.BASE_URL}/images/logo3.png`,
-    title: "React Native Developer",
-    date: "March 2019 - May 2020",
-    responsibilities: [
-      "Built cross-platform mobile apps using React Native, integrating with Appwrite's backend services.",
-      "Improved app performance and user experience through code optimization and testing.",
-      "Coordinated with the product team to implement features based on feedback.",
+      "Collaborated on core software modules for satellite telemetry and payload data processing.",
+      "Developed high-performance algorithms to analyze geospatial and atmospheric datasets.",
+      "Ensured software reliability and performance through strict testing protocols and code optimization.",
     ],
   },
 ];
 
 const expLogos = [
   {
-    name: "logo1",
-    imgPath: `${import.meta.env.BASE_URL}/images/logo1.png`,
+    name: "MSH",
+    imgPath: `${import.meta.env.BASE_URL}/images/MSH_logo.png`,
   },
   {
-    name: "logo2",
-    imgPath: `${import.meta.env.BASE_URL}/images/logo2.png`,
+    name: "MW",
+    imgPath: `${import.meta.env.BASE_URL}/images/MW_logo.png`,
   },
   {
-    name: "logo3",
-    imgPath: `${import.meta.env.BASE_URL}/images/logo3.png`,
+    name: "AS",
+    imgPath: `${import.meta.env.BASE_URL}/images/AS_logo.png`,
+  },
+  {
+    name: "ragya",
+    imgPath: `${import.meta.env.BASE_URL}/images/ragya_logo.jpeg`,
+  },
+  {
+    name: "isro",
+    imgPath: `${import.meta.env.BASE_URL}/images/isro_logo.png`,
   },
 ];
 

@@ -66,8 +66,12 @@ const ExperienceSection = () => {
               <div key={card.title} className="exp-card-wrapper">
                 <div className="xl:w-2/6">
                   <GlowCard card={card} index={index}>
-                    <div>
-                      <img src={card.imgPath} alt={card.title} />
+                    <div className="flex justify-center items-center h-24 w-auto bg-black-200/20 rounded-xl p-4 border border-white/5 hover:bg-black-200/40 transition-colors duration-300">
+                      <img
+                        src={card.imgPath}
+                        alt={card.title}
+                        className="max-h-full max-w-full object-contain opacity-80 hover:opacity-100 transition-opacity duration-300"
+                      />
                     </div>
                   </GlowCard>
                 </div>
@@ -78,8 +82,12 @@ const ExperienceSection = () => {
                       <div className="gradient-line w-1 h-full" />
                     </div>
                     <div className="expText flex xl:gap-20 md:gap-10 gap-5 relative z-20">
-                      <div className="timeline-logo">
-                        <img src={card.logoPath} alt="logo" />
+                      <div className="timeline-logo overflow-hidden">
+                        <img
+                          src={card.logoPath}
+                          alt="logo"
+                          className="w-[60%] h-[60%] object-contain rounded-full"
+                        />
                       </div>
                       <div>
                         <h1 className="font-semibold text-3xl">{card.title}</h1>
