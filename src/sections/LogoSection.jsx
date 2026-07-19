@@ -11,7 +11,7 @@ const Logoicon = ({ icon }) => {
 
 const LogoSection = () => {
   return (
-    <div className="md:my-20 my-10 relative">
+    <div className="md:my-12 my-10 relative">
       <div className="gradient-edge" />
       <div className="gradient-edge" />
       <div className="marquee h-52">

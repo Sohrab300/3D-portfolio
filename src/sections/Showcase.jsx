@@ -5,33 +5,38 @@ const Showcase = () => {
   const cards = [
     {
       title: "Ryde Music Streaming",
-      year: 2024,
-      genre: "React / Node.js",
       image: `${import.meta.env.BASE_URL}/images/project1.png`,
+      tech: ["React", "Node.js", "Express", "MongoDB", "Redux"],
+      description:
+        "A modern, full-stack music streaming application featuring high-fidelity audio playback, custom playlist creation, real-time lyrics synchronization, and a personalized recommendation engine.",
     },
     {
       title: "Dev Schedule Dashboard",
-      year: 2024,
-      genre: "React / Tailwind",
       image: `${import.meta.env.BASE_URL}/images/project2-1.png`,
+      tech: ["React", "Tailwind CSS", "Recharts", "Framer Motion"],
+      description:
+        "An interactive, visually rich scheduling dashboard designed for developers. Features real-time event tracking, dragging timelines, task planning metrics, and automated workload distribution analytics.",
     },
     {
       title: "Dev Schedule Landing",
-      year: 2024,
-      genre: "React / Vite",
       image: `${import.meta.env.BASE_URL}/images/project2-2.png`,
+      tech: ["React", "Vite", "Tailwind CSS", "Framer Motion"],
+      description:
+        "A high-performance, SEO-optimized landing page for the Dev Schedule platform. Showcases sleek animations, interactive product tours, pricing calculators, and responsive design systems.",
     },
     {
       title: "Hindustani Music Player",
-      year: 2023,
-      genre: "Next.js / Player",
       image: `${import.meta.env.BASE_URL}/images/project2.png`,
+      tech: ["Next.js", "Web Audio API", "CSS Modules", "Vercel"],
+      description:
+        "A specialized web-based audio experience crafted for Hindustani classical music. Includes interactive raag guide charts, microtonal tuning adjustments, and a drone accompaniment player.",
     },
     {
       title: "Shadow Craft Lamp 3D",
-      year: 2024,
-      genre: "React / Three.js",
       image: `${import.meta.env.BASE_URL}/images/project-3.png`,
+      tech: ["React", "Three.js", "React Three Fiber", "Drei"],
+      description:
+        "An immersive 3D interactive product customizer showcasing dynamic shadow projection, material manipulation, real-time light source movement, and detailed physics-based rendering.",
     },
   ];
 
@@ -45,6 +50,9 @@ const Showcase = () => {
   const [displayGenre, setDisplayGenre] = useState(cards[0].genre);
   const [transitionClass, setTransitionClass] = useState("");
   const [dimensions, setDimensions] = useState({ width: 460, height: 270 });
+  const [isDetailOpen, setIsDetailOpen] = useState(false);
+  const [isMobileOrTablet, setIsMobileOrTablet] = useState(false);
+  const [wrapperHeight, setWrapperHeight] = useState("485px");
 
   const radius = dimensions.width * 0.78; // Mathematically optimized cylinder radius
 
@@ -66,13 +74,48 @@ const Showcase = () => {
   useEffect(() => {
     const handleResize = () => {
       const w = window.innerWidth;
+      setIsMobileOrTablet(w < 768); // side-by-side layout starts at md (768px)
+
+      // Calculate wrapper height dynamically based on screen width
+      if (w < 450) {
+        setWrapperHeight("320px");
+      } else if (w < 768) {
+        setWrapperHeight("380px");
+      } else if (w < 1024) {
+        setWrapperHeight("400px");
+      } else {
+        setWrapperHeight("485px");
+      }
+
       let cardW = 460;
       if (w < 550) {
         cardW = Math.round(Math.min(240, Math.max(160, w * 0.52))); // Extra compact on mobile under 550px
       } else if (w < 768) {
         cardW = Math.round(Math.min(320, Math.max(240, w * 0.58))); // Compact card width on large mobile/tablet
-      } else if (w < 1024) {
-        cardW = 380; // Stable sizing on tablet
+      } else {
+        // Tablet and Desktop (w >= 768) - side-by-side layout when open:
+        if (isDetailOpen) {
+          if (w < 768) {
+            cardW = 260; // Enlarge 3D cards on small tablets
+          } else if (w < 900) {
+            cardW = 310; // Enlarge 3D cards on small tablets
+          } else if (w < 1024) {
+            cardW = 380; // Enlarge 3D cards on medium tablets
+          } else if (w < 1280) {
+            cardW = 400; // Medium card for iPads and small desktops
+          } else if (w < 1440) {
+            cardW = 480; // Large card
+          } else {
+            cardW = 500; // Full desktop size when detail is open
+          }
+        } else {
+          // Closed state sizing:
+          if (w < 1024) {
+            cardW = 380; // Normal tablet size when closed
+          } else {
+            cardW = 460; // Normal desktop size when closed
+          }
+        }
       }
       const cardH = Math.round(cardW * 0.58); // Maintain widescreen 16:9 aspect ratio
       setDimensions({ width: cardW, height: cardH });
@@ -81,7 +124,19 @@ const Showcase = () => {
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  }, [isDetailOpen]);
+
+  // Block body scroll when details modal is open
+  useEffect(() => {
+    if (isDetailOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isDetailOpen]);
 
   // Mouse / Touch handlers for dragging
   const handleDragStart = (clientX) => {
@@ -146,6 +201,7 @@ const Showcase = () => {
 
     const newTargetIndex = currentCardIndex + shortestDiff;
     targetRotationRef.current = newTargetIndex * theta;
+    setIsDetailOpen(true);
   };
 
   // Keyboard navigation
@@ -252,49 +308,133 @@ const Showcase = () => {
           title="Featured Work"
           sub="🎬 Drag cards to spin, or click them to center"
         />
-
         <div
-          ref={containerRef}
-          className="carousel-container mt-6 md:mt-12 lg:mt-16 lg:mb-8"
-          style={{ height: `${Math.round(dimensions.height * 1.5 + 20)}px` }}
-          onMouseDown={(e) => handleDragStart(e.clientX)}
-          onMouseMove={(e) => handleDragMove(e.clientX)}
-          onMouseUp={handleDragEnd}
-          onMouseLeave={handleDragEnd}
-          onTouchStart={(e) => handleDragStart(e.touches[0].clientX)}
-          onTouchMove={(e) => handleDragMove(e.touches[0].clientX)}
-          onTouchEnd={handleDragEnd}
+          className={`w-[100%] 2xl:w-[85%] flex items-center justify-center mt-6 md:mt-8 md:mb-6 transition-all duration-500 ease-in-out relative ${
+            !isMobileOrTablet && isDetailOpen ? "gap-8 md:gap-0" : "gap-0"
+          }`}
+          style={{
+            height: wrapperHeight,
+          }}
         >
+          {/* Inline Details Card for Tablet and Desktop */}
           <div
-            ref={trackRef}
-            className="carousel-track"
-            style={{
-              width: `${dimensions.width}px`,
-              height: `${dimensions.height}px`,
-              transform: `rotateY(${-rotationRef.current}deg)`,
-            }}
+            className={`project-detail-card ${
+              !isMobileOrTablet && isDetailOpen
+                ? "w-full md:w-[35%] md:max-w-[260px] lg:max-w-[320px] h-[80%] lg:h-[90%] opacity-100 scale-100 border border-white/10"
+                : "w-0 max-w-0 opacity-0 scale-95 pointer-events-none border-transparent"
+            }`}
           >
-            {cards.map((card, i) => {
-              const isActive = activeIndex === i;
-              return (
-                <div
-                  key={card.title}
-                  onClick={() => handleCardClick(i)}
-                  className={`carousel-card ${isActive ? "carousel-card-active" : ""}`}
-                  style={{
-                    transform: `rotateY(${i * theta}deg) translateZ(${radius}px)`,
-                  }}
+            <button
+              onClick={() => setIsDetailOpen(false)}
+              className="close-button"
+              aria-label="Close details"
+            >
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+
+            <div className="detail-content">
+              <h3 className="detail-title">{cards[activeIndex].title}</h3>
+              <p className="detail-desc line-clamp-2 md:line-clamp-none">
+                {cards[activeIndex].description}
+              </p>
+
+              <div className="detail-tech-list">
+                {cards[activeIndex].tech?.map((t) => (
+                  <span key={t} className="detail-tech-badge">
+                    {t}
+                  </span>
+                ))}
+              </div>
+
+              <a href="#contact" className="detail-cta">
+                <span>Visit </span>
+                <svg
+                  className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
                 >
-                  <div className="card-image-container">
-                    <img
-                      src={card.image}
-                      alt={card.title}
-                      onDragStart={(e) => e.preventDefault()}
-                    />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          {/* Spacer that animates its width to push them apart like justify-between on desktop */}
+          <div
+            className={`transition-all duration-500 ease-in-out hidden md:block ${!isMobileOrTablet && isDetailOpen ? "flex-grow" : "w-0 flex-grow-0"}`}
+          />
+
+          <div
+            ref={containerRef}
+            className={`carousel-container transition-all duration-500 ease-in-out ${
+              !isMobileOrTablet && isDetailOpen
+                ? "w-full md:w-[58%] max-w-[700px] origin-center"
+                : "w-full max-w-[1200px]"
+            }`}
+            style={{
+              height: `${Math.round(dimensions.height * 1.5 + 20)}px`,
+              transform:
+                !isMobileOrTablet && isDetailOpen
+                  ? "scale(0.70) translateX(-40px)"
+                  : "scale(1) translateX(0)",
+            }}
+            onMouseDown={(e) => handleDragStart(e.clientX)}
+            onMouseMove={(e) => handleDragMove(e.clientX)}
+            onMouseUp={handleDragEnd}
+            onMouseLeave={handleDragEnd}
+            onTouchStart={(e) => handleDragStart(e.touches[0].clientX)}
+            onTouchMove={(e) => handleDragMove(e.touches[0].clientX)}
+            onTouchEnd={handleDragEnd}
+          >
+            <div
+              ref={trackRef}
+              className="carousel-track"
+              style={{
+                width: `${dimensions.width}px`,
+                height: `${dimensions.height}px`,
+                transform: `rotateY(${-rotationRef.current}deg)`,
+              }}
+            >
+              {cards.map((card, i) => {
+                const isActive = activeIndex === i;
+                return (
+                  <div
+                    key={card.title}
+                    onClick={() => handleCardClick(i)}
+                    className={`carousel-card ${isActive ? "carousel-card-active" : ""}`}
+                    style={{
+                      transform: `rotateY(${i * theta}deg) translateZ(${radius}px)`,
+                    }}
+                  >
+                    <div className="card-image-container">
+                      <img
+                        src={card.image}
+                        alt={card.title}
+                        onDragStart={(e) => e.preventDefault()}
+                      />
+                    </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
         </div>
 
@@ -317,6 +457,90 @@ const Showcase = () => {
           ))}
         </div>
       </div>
+
+      {/* Screen Overlay Dialog Modal Backdrop - Mobile Only */}
+      {isMobileOrTablet && (
+        <div
+          className={`fixed inset-0 z-55 flex items-center justify-center p-4 transition-all duration-300 ease-in-out bg-black/70 backdrop-blur-md ${
+            isDetailOpen
+              ? "opacity-100 pointer-events-auto"
+              : "opacity-0 pointer-events-none"
+          }`}
+          onClick={() => setIsDetailOpen(false)}
+        >
+          {/* Dialog Content Card */}
+          <div
+            className={`relative w-full max-w-[420px] h-[50%] bg-black-100 border border-white/10 rounded-2xl p-6 shadow-2xl flex flex-col transition-all duration-300 ${
+              isDetailOpen
+                ? "scale-100 translate-y-0 opacity-100"
+                : "scale-95 translate-y-4 opacity-0"
+            }`}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setIsDetailOpen(false)}
+              className="absolute top-4 right-4 z-20 w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 hover:scale-110 transition-all duration-300 backdrop-blur-sm cursor-pointer"
+              aria-label="Close details"
+            >
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+
+            <div className="flex flex-col gap-4 text-left">
+              <h3 className="text-2xl font-extrabold text-white leading-tight">
+                {cards[activeIndex].title}
+              </h3>
+
+              <p className="text-md text-white/70 leading-relaxed">
+                {cards[activeIndex].description}
+              </p>
+
+              <div className="flex flex-wrap gap-2 mt-2">
+                {cards[activeIndex].tech?.map((t) => (
+                  <span
+                    key={t}
+                    className="px-2.5 py-1 text-xs rounded-full bg-white/5 border border-white/10 text-white/80"
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <a
+              href="#contact"
+              onClick={() => setIsDetailOpen(false)}
+              className="mt-auto px-5 py-3 rounded-xl bg-white text-black font-bold text-sm flex items-center justify-center gap-2 hover:bg-white/90 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 cursor-pointer shadow-lg"
+            >
+              <span>Visit </span>
+              <svg
+                className="w-4 h-4 ml-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
