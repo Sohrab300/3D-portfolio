@@ -37,7 +37,6 @@ const Showcase = () => {
 
   const N = cards.length;
   const theta = 360 / N;
-  const radius = 360; // 3D cylinder radius
   const autoplaySpeed = 0.08; // slow autoplay speed in degrees/frame
 
   const [isDragging, setIsDragging] = useState(false);
@@ -45,10 +44,13 @@ const Showcase = () => {
   const [displayTitle, setDisplayTitle] = useState(cards[0].title);
   const [displayGenre, setDisplayGenre] = useState(cards[0].genre);
   const [transitionClass, setTransitionClass] = useState("");
+  const [dimensions, setDimensions] = useState({ width: 460, height: 270 });
+
+  const radius = dimensions.width * 0.78; // Mathematically optimized cylinder radius
 
   const containerRef = useRef(null);
   const trackRef = useRef(null);
-  
+
   const rotationRef = useRef(0);
   const velocityRef = useRef(autoplaySpeed);
   const targetRotationRef = useRef(null);
@@ -60,12 +62,33 @@ const Showcase = () => {
   const lastTimeRef = useRef(0);
   const requestRef = useRef(null);
 
+  // Responsive card dimensions update on screen resize
+  useEffect(() => {
+    const handleResize = () => {
+      const w = window.innerWidth;
+      let cardW = 460;
+      if (w < 550) {
+        cardW = Math.round(Math.min(240, Math.max(160, w * 0.52))); // Extra compact on mobile under 550px
+      } else if (w < 768) {
+        cardW = Math.round(Math.min(320, Math.max(240, w * 0.58))); // Compact card width on large mobile/tablet
+      } else if (w < 1024) {
+        cardW = 380; // Stable sizing on tablet
+      }
+      const cardH = Math.round(cardW * 0.58); // Maintain widescreen 16:9 aspect ratio
+      setDimensions({ width: cardW, height: cardH });
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   // Mouse / Touch handlers for dragging
   const handleDragStart = (clientX) => {
     setIsDragging(true);
     dragStartX.current = clientX;
     dragStartRotation.current = rotationRef.current;
-    
+
     lastXRef.current = clientX;
     lastTimeRef.current = performance.now();
     velocityRef.current = 0; // reset velocity during active drag
@@ -77,7 +100,7 @@ const Showcase = () => {
     const currentTime = performance.now();
     const deltaTime = currentTime - lastTimeRef.current;
     const deltaX = clientX - lastXRef.current;
-    
+
     // Map drag distance to rotation angle (360 degrees = full screen width)
     const deltaRot = (deltaX / window.innerWidth) * 360;
     rotationRef.current -= deltaRot;
@@ -86,7 +109,8 @@ const Showcase = () => {
     if (deltaTime > 0) {
       const instantVelocity = -deltaRot / deltaTime; // Match sign to rotation decrement
       // Smooth the velocity tracking using an exponential moving average
-      velocityRef.current = velocityRef.current * 0.6 + (instantVelocity * 16.7) * 0.4;
+      velocityRef.current =
+        velocityRef.current * 0.6 + instantVelocity * 16.7 * 0.4;
     }
 
     lastXRef.current = clientX;
@@ -98,7 +122,8 @@ const Showcase = () => {
     }
 
     // Update active index for the title box & indicators
-    const roundedIndex = ((Math.round(rotationRef.current / theta) % N) + N) % N;
+    const roundedIndex =
+      ((Math.round(rotationRef.current / theta) % N) + N) % N;
     if (roundedIndex !== lastActiveIndex.current) {
       lastActiveIndex.current = roundedIndex;
       setActiveIndex(roundedIndex);
@@ -113,7 +138,7 @@ const Showcase = () => {
   const handleCardClick = (index) => {
     const currentCardIndex = Math.round(rotationRef.current / theta);
     const diff = index - (((currentCardIndex % N) + N) % N);
-    
+
     // Find shortest rotation direction
     let shortestDiff = diff;
     if (diff > N / 2) shortestDiff -= N;
@@ -143,10 +168,10 @@ const Showcase = () => {
   // Handle activeIndex changes to trigger smoke fade-out and slide-in transitions
   useEffect(() => {
     if (activeIndex === prevActiveIndex.current) return;
-    
+
     // Trigger fade-out (smoke) animation
     setTransitionClass("smoke-exit");
-    
+
     const timeoutOut = setTimeout(() => {
       // Once fully dissolved, switch texts
       setDisplayTitle(cards[activeIndex].title);
@@ -190,7 +215,7 @@ const Showcase = () => {
       } else {
         // Inertia physics: Apply current velocity, decay towards standard autoplay speed
         rotationRef.current += velocityRef.current;
-        
+
         // Decelerate / decay velocity back to slow autoplay speed
         // If spun fast it slows down; if spun backwards it reverses and spins forward again
         velocityRef.current = velocityRef.current * 0.96 + autoplaySpeed * 0.04;
@@ -202,7 +227,8 @@ const Showcase = () => {
       }
 
       // Update active index state only when the active card changes (crosses halfway threshold)
-      const roundedIndex = ((Math.round(rotationRef.current / theta) % N) + N) % N;
+      const roundedIndex =
+        ((Math.round(rotationRef.current / theta) % N) + N) % N;
       if (roundedIndex !== lastActiveIndex.current) {
         lastActiveIndex.current = roundedIndex;
         setActiveIndex(roundedIndex);
@@ -229,7 +255,8 @@ const Showcase = () => {
 
         <div
           ref={containerRef}
-          className="carousel-container mt-16"
+          className="carousel-container mt-6 md:mt-12 lg:mt-16 lg:mb-8"
+          style={{ height: `${Math.round(dimensions.height * 1.5 + 20)}px` }}
           onMouseDown={(e) => handleDragStart(e.clientX)}
           onMouseMove={(e) => handleDragMove(e.clientX)}
           onMouseUp={handleDragEnd}
@@ -241,7 +268,11 @@ const Showcase = () => {
           <div
             ref={trackRef}
             className="carousel-track"
-            style={{ transform: `rotateY(${-rotationRef.current}deg)` }}
+            style={{
+              width: `${dimensions.width}px`,
+              height: `${dimensions.height}px`,
+              transform: `rotateY(${-rotationRef.current}deg)`,
+            }}
           >
             {cards.map((card, i) => {
               const isActive = activeIndex === i;
