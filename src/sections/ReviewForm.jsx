@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import emailjs from "@emailjs/browser";
 import TitleHeader from "../components/TitleHeader";
 
@@ -8,10 +8,20 @@ const ReviewForm = () => {
     reviewer_role: "",
     review_text: "",
     rating: 0,
+    social_url: "",
+    photo_permission: false,
   });
   const [hovered, setHovered] = useState(0);
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState(null);
+
+  // Lock scrolling on the review page
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -36,6 +46,8 @@ const ReviewForm = () => {
           reviewer_role: form.reviewer_role,
           review_text: form.review_text,
           rating: form.rating,
+          social_url: form.social_url,
+          photo_permission: form.photo_permission ? "Yes" : "No",
         },
         import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY,
       );
@@ -44,6 +56,8 @@ const ReviewForm = () => {
         reviewer_role: "",
         review_text: "",
         rating: 0,
+        social_url: "",
+        photo_permission: false,
       });
       setStatus({
         type: "success",
@@ -51,21 +65,7 @@ const ReviewForm = () => {
           "Thank you! Your review has been submitted and is pending approval.",
       });
     } catch (error) {
-      console.error(
-        "EmailJS Error - Full object:",
-        JSON.stringify(error, null, 2),
-      );
-      console.error("Status:", error?.status);
-      console.error("Text:", error?.text);
-      console.error("Service ID:", import.meta.env.VITE_APP_EMAILJS_SERVICE_ID);
-      console.error(
-        "Template ID:",
-        import.meta.env.VITE_APP_EMAILJS_REVIEW_TEMPLATE_ID,
-      );
-      console.error(
-        "Public Key defined:",
-        !!import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY,
-      );
+      console.error("EmailJS Error:", error);
       setStatus({
         type: "error",
         message: "Failed to submit review. Please try again.",
@@ -76,81 +76,148 @@ const ReviewForm = () => {
   };
 
   return (
-    <section className="flex-center section-padding min-h-screen">
-      <div className="w-full h-full md:px-10 px-5 max-w-2xl mx-auto">
+    <section className="w-screen h-screen flex items-center justify-center bg-black-100 overflow-hidden p-4 md:p-6">
+      <div className="w-full max-w-[480px] flex flex-col items-center gap-6">
         <TitleHeader
           title="Write a Review"
           sub="⭐ Worked with me? I'd love to hear your feedback!"
         />
-        <div className="flex-center card-border rounded-xl p-10 mt-16">
-          <form onSubmit={handleSubmit} className="w-full flex flex-col gap-7">
-            <div>
-              <label htmlFor="reviewer_name">Your Name</label>
-              <input
-                type="text"
-                id="reviewer_name"
-                name="reviewer_name"
-                value={form.reviewer_name}
-                onChange={handleChange}
-                placeholder="What's your name?"
-                required
-              />
-            </div>
+        <div className="w-full card-border rounded-xl p-6 md:p-8 bg-black-100/40 backdrop-blur-md shadow-2xl">
+          <form onSubmit={handleSubmit} className="w-full flex flex-col gap-4">
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label
+                  htmlFor="reviewer_name"
+                  className="text-xs font-semibold text-white/80"
+                >
+                  Your Name
+                </label>
+                <input
+                  type="text"
+                  id="reviewer_name"
+                  name="reviewer_name"
+                  value={form.reviewer_name}
+                  onChange={handleChange}
+                  placeholder="Your name"
+                  required
+                  className="mt-1 w-full"
+                />
+              </div>
 
-            <div>
-              <label htmlFor="reviewer_role">Your Role / Company</label>
-              <input
-                type="text"
-                id="reviewer_role"
-                name="reviewer_role"
-                value={form.reviewer_role}
-                onChange={handleChange}
-                placeholder="e.g. CTO at Acme Inc."
-                required
-              />
-            </div>
-
-            <div>
-              <label>Rating</label>
-              <div className="flex gap-2 mt-2">
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <button
-                    key={star}
-                    type="button"
-                    onClick={() => setForm({ ...form, rating: star })}
-                    onMouseEnter={() => setHovered(star)}
-                    onMouseLeave={() => setHovered(0)}
-                    className="text-3xl transition-transform hover:scale-110 focus:outline-none"
-                    aria-label={`Rate ${star} star${star > 1 ? "s" : ""}`}
-                  >
-                    <span
-                      className={
-                        star <= (hovered || form.rating)
-                          ? "text-yellow-400"
-                          : "text-gray-600"
-                      }
-                    >
-                      ★
-                    </span>
-                  </button>
-                ))}
+              <div>
+                <label
+                  htmlFor="reviewer_role"
+                  className="text-xs font-semibold text-white/80"
+                >
+                  Role / Company
+                </label>
+                <input
+                  type="text"
+                  id="reviewer_role"
+                  name="reviewer_role"
+                  value={form.reviewer_role}
+                  onChange={handleChange}
+                  placeholder="e.g. CTO at Acme"
+                  required
+                  className="mt-1 w-full"
+                />
               </div>
             </div>
 
             <div>
-              <label htmlFor="review_text">Your Review</label>
+              <label
+                htmlFor="social_url"
+                className="text-xs font-semibold text-white/80"
+              >
+                LinkedIn or Instagram Profile URL
+              </label>
+              <input
+                type="url"
+                id="social_url"
+                name="social_url"
+                value={form.social_url}
+                onChange={handleChange}
+                placeholder="https://linkedin.com/in/..."
+                required
+                className="mt-1 w-full"
+              />
+            </div>
+
+            <div className="grid grid-cols-2 gap-4 items-center">
+              <div>
+                <label className="text-xs font-semibold text-white/80">
+                  Rating
+                </label>
+                <div className="flex gap-1.5 mt-1">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <button
+                      key={star}
+                      type="button"
+                      onClick={() => setForm({ ...form, rating: star })}
+                      onMouseEnter={() => setHovered(star)}
+                      onMouseLeave={() => setHovered(0)}
+                      className="text-2xl transition-transform hover:scale-110 focus:outline-none"
+                      aria-label={`Rate ${star} star${star > 1 ? "s" : ""}`}
+                    >
+                      <span
+                        className={
+                          star <= (hovered || form.rating)
+                            ? "text-yellow-400"
+                            : "text-gray-600"
+                        }
+                      >
+                        ★
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="">
+                <label className="text-xs font-semibold text-white/80">
+                  Permission
+                </label>
+                <div className="flex items-center gap-2">
+                  <input
+                    type="checkbox"
+                    id="photo_permission"
+                    name="photo_permission"
+                    checked={form.photo_permission}
+                    onChange={(e) =>
+                      setForm({ ...form, photo_permission: e.target.checked })
+                    }
+                    className="w-4 h-4 rounded border-white/10 bg-white/5 text-yellow-400 focus:ring-0 focus:ring-offset-0 cursor-pointer"
+                  />
+                  <label
+                    htmlFor="photo_permission"
+                    className="text-[11px] mt-2 font-semibold text-white/80 leading-snug cursor-pointer select-none"
+                  >
+                    Allow use of your photo on review
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <label
+                htmlFor="review_text"
+                className="text-xs font-semibold text-white/80"
+              >
+                Your Review
+              </label>
               <textarea
                 id="review_text"
                 name="review_text"
                 value={form.review_text}
                 onChange={handleChange}
                 placeholder="Share your experience working with me..."
-                rows="5"
+                rows="3"
                 required
+                className="mt-1 w-full"
               />
             </div>
 
-            <button type="submit" disabled={loading}>
+            <button type="submit" disabled={loading} className="mt-2">
               <div className="cta-button group">
                 <div className="bg-circle" />
                 <p className="text">
@@ -167,7 +234,7 @@ const ReviewForm = () => {
 
             {status && (
               <p
-                className={`text-sm ${
+                className={`text-xs mt-1 ${
                   status.type === "success" ? "text-green-400" : "text-red-400"
                 }`}
               >
