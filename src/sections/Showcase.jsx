@@ -4,68 +4,76 @@ import TitleHeader from "../components/TitleHeader";
 const Showcase = () => {
   const cards = [
     {
-      title: "Astra Shop",
-      genre: "E-Commerce App",
-      image: `${import.meta.env.BASE_URL}images/showcase/AS.png`,
-      tech: ["React", "Redux", "Tailwind CSS", "Node.js", "MongoDB"],
+      title: "Video Call WebApp",
+      image: `${import.meta.env.BASE_URL}images/showcase/VCW.png`,
+      tech: ["React", "Node.js", "WebRTC", "Socket.io", "PostgreSQL"],
+      link: "https://sohrab300.github.io/Video-Call-WebApp/",
       description:
-        "A premium e-commerce web application featuring high-fidelity search, dynamic filters, real-time checkout integrations, and full admin inventory dashboards.",
+        "A peer-to-peer video calling platform that matches strangers based on shared interests. Built with WebRTC for real-time media streaming and Socket.io for signaling, with interest-based room matching on the backend.",
     },
     {
-      title: "Dev Schedule Dashboard",
-      genre: "Productivity Portal",
+      title: "Dev Schedule Admin Dashboard",
       image: `${import.meta.env.BASE_URL}images/showcase/DS-A.png`,
       tech: ["React", "Tailwind CSS", "Vite", "Recharts", "Framer Motion"],
+      link: "https://www.devschedule.in",
       description:
-        "An interactive, visually rich scheduling portal designed for developers. Features real-time event tracking, workload statistics, and automated task metrics.",
+        "The host-side dashboard of a Calendly-style scheduling app. Manage availability, view upcoming bookings, and track scheduling activity through an animated, data-rich interface.",
     },
     {
-      title: "Dev Schedule Landing",
-      genre: "Marketing Page",
+      title: "Dev Schedule Booking Page",
       image: `${import.meta.env.BASE_URL}images/showcase/DS-B.png`,
       tech: ["React", "Vite", "Tailwind CSS", "Framer Motion", "GSAP"],
+      link: "https://www.devschedule.in/sohrab-sheikh/new-meeting",
       description:
-        "A high-performance, SEO-optimized landing page featuring elegant micro-animations, interactive product previews, and responsive layouts.",
+        "The guest-facing booking flow of Dev Schedule. Users open a shared link, pick an available slot, and confirm a meeting — mirroring the core Calendly booking experience with smooth transitions throughout.",
     },
     {
-      title: "Music Wave Player",
-      genre: "Audio Streaming",
+      title: "Minglewise: A socialising platform",
       image: `${import.meta.env.BASE_URL}images/showcase/MW.png`,
-      tech: ["Next.js", "Web Audio API", "Redux Toolkit", "Tailwind CSS"],
+      tech: ["React", "Node.js", "Supabase"],
+      link: "https://www.minglewise.com",
       description:
-        "A modern web-based audio player engineered for high-fidelity streaming. Features custom playlist builders, audio queues, and custom equalizer settings.",
+        "A social platform where users can create and join clubs, organise events, and connect with others. Built from scratch — from database design to UI — and delivered as a complete client project.",
     },
     {
-      title: "Nexus Tech Portal",
-      genre: "Business Platform",
+      title: "Nana Travels website",
       image: `${import.meta.env.BASE_URL}images/showcase/NT.png`,
-      tech: ["React", "TypeScript", "Next.js", "Tailwind CSS", "Prisma"],
+      tech: ["Astro", "Decap CMS"],
+      link: "https://www.nanatravels.co",
       description:
-        "A comprehensive portal offering agency services, interactive client calendars, automated invoicing systems, and secure document vaults.",
+        "A bilingual tours and travel website with full English and French support, built for a client. Includes a CMS-powered admin dashboard so the client can update page content without touching code.",
     },
     {
-      title: "Portfolio Designer",
-      genre: "Creative Sandbox",
-      image: `${import.meta.env.BASE_URL}images/showcase/PD.png`,
-      tech: ["React", "Three.js", "React Three Fiber", "Drei", "GSAP"],
+      title: "Promptflow Designer",
+      image: `${import.meta.env.BASE_URL}images/showcase/PF.png`,
+      tech: ["React", "React Flow", "Claude API"],
+      link: "https://flow-designer-zeta.vercel.app/",
       description:
-        "An immersive 3D portfolio studio demonstrating shaders, interactive camera motions, light configuration controls, and custom model maps.",
+        "An AI-powered flow diagram builder. Users enter a prompt and their API key, and the app generates a structured flow diagram automatically — no manual node placement needed.",
     },
     {
-      title: "Ryde Grid Analytics",
-      genre: "Logistics Dashboard",
+      title: "Ragya",
       image: `${import.meta.env.BASE_URL}images/showcase/RG.png`,
-      tech: ["React", "Leaflet Maps", "Recharts", "Node.js", "Express"],
+      tech: ["React", "Next.js", "GraphQL", "Redux", "Ruby on Rails", "AWS"],
+      link: "https://www.ragya.com",
       description:
-        "A real-time analytics hub mapping transit routes, driver dispatcher grids, regional demand hotspots, and trip completion metrics.",
+        "A streaming platform dedicated to Hindustani Classical Music, giving artists a space to publish their work and listeners a curated home for the genre. Contributed across the full stack — from SSR migrations and search to mobile and backend endpoints.",
     },
     {
       title: "Shadow Craft Studio",
-      genre: "3D Customizer",
       image: `${import.meta.env.BASE_URL}images/showcase/SC.png`,
-      tech: ["React", "Three.js", "React Three Fiber", "Drei", "Tailwind CSS"],
+      tech: [
+        "React",
+        "TypeScript",
+        "Vite",
+        "Three.js",
+        "React Three Fiber",
+        "FastAPI",
+        "Supabase",
+      ],
+      link: "https://shadow-craft-bay.vercel.app/",
       description:
-        "A photorealistic interactive 3D product customizer allowing dynamic material edits, lighting controls, and real-time shadow casting.",
+        "A full-stack product where users upload a photo or SVG and get a 3D-printable shadow lamp model generated from it. Features a live 3D preview, customisable shape and colour, and end-to-end order management.",
     },
   ];
 
@@ -393,7 +401,12 @@ const Showcase = () => {
                 ))}
               </div>
 
-              <a href="#contact" className="detail-cta">
+              <a
+                href={cards[activeIndex].link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="detail-cta"
+              >
                 <span>Visit </span>
                 <svg
                   className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1"
@@ -554,7 +567,9 @@ const Showcase = () => {
             </div>
 
             <a
-              href="#contact"
+              href={cards[activeIndex].link}
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={() => setIsDetailOpen(false)}
               className="mt-auto px-5 py-3 rounded-xl bg-white text-black font-bold text-sm flex items-center justify-center gap-2 hover:bg-white/90 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 cursor-pointer shadow-lg"
             >
