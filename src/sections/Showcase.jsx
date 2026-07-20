@@ -4,39 +4,68 @@ import TitleHeader from "../components/TitleHeader";
 const Showcase = () => {
   const cards = [
     {
-      title: "Ryde Music Streaming",
-      image: `${import.meta.env.BASE_URL}/images/project1.png`,
-      tech: ["React", "Node.js", "Express", "MongoDB", "Redux"],
+      title: "Astra Shop",
+      genre: "E-Commerce App",
+      image: `${import.meta.env.BASE_URL}images/showcase/AS.png`,
+      tech: ["React", "Redux", "Tailwind CSS", "Node.js", "MongoDB"],
       description:
-        "A modern, full-stack music streaming application featuring high-fidelity audio playback, custom playlist creation, real-time lyrics synchronization, and a personalized recommendation engine.",
+        "A premium e-commerce web application featuring high-fidelity search, dynamic filters, real-time checkout integrations, and full admin inventory dashboards.",
     },
     {
       title: "Dev Schedule Dashboard",
-      image: `${import.meta.env.BASE_URL}/images/project2-1.png`,
-      tech: ["React", "Tailwind CSS", "Recharts", "Framer Motion"],
+      genre: "Productivity Portal",
+      image: `${import.meta.env.BASE_URL}images/showcase/DS-A.png`,
+      tech: ["React", "Tailwind CSS", "Vite", "Recharts", "Framer Motion"],
       description:
-        "An interactive, visually rich scheduling dashboard designed for developers. Features real-time event tracking, dragging timelines, task planning metrics, and automated workload distribution analytics.",
+        "An interactive, visually rich scheduling portal designed for developers. Features real-time event tracking, workload statistics, and automated task metrics.",
     },
     {
       title: "Dev Schedule Landing",
-      image: `${import.meta.env.BASE_URL}/images/project2-2.png`,
-      tech: ["React", "Vite", "Tailwind CSS", "Framer Motion"],
+      genre: "Marketing Page",
+      image: `${import.meta.env.BASE_URL}images/showcase/DS-B.png`,
+      tech: ["React", "Vite", "Tailwind CSS", "Framer Motion", "GSAP"],
       description:
-        "A high-performance, SEO-optimized landing page for the Dev Schedule platform. Showcases sleek animations, interactive product tours, pricing calculators, and responsive design systems.",
+        "A high-performance, SEO-optimized landing page featuring elegant micro-animations, interactive product previews, and responsive layouts.",
     },
     {
-      title: "Hindustani Music Player",
-      image: `${import.meta.env.BASE_URL}/images/project2.png`,
-      tech: ["Next.js", "Web Audio API", "CSS Modules", "Vercel"],
+      title: "Music Wave Player",
+      genre: "Audio Streaming",
+      image: `${import.meta.env.BASE_URL}images/showcase/MW.png`,
+      tech: ["Next.js", "Web Audio API", "Redux Toolkit", "Tailwind CSS"],
       description:
-        "A specialized web-based audio experience crafted for Hindustani classical music. Includes interactive raag guide charts, microtonal tuning adjustments, and a drone accompaniment player.",
+        "A modern web-based audio player engineered for high-fidelity streaming. Features custom playlist builders, audio queues, and custom equalizer settings.",
     },
     {
-      title: "Shadow Craft Lamp 3D",
-      image: `${import.meta.env.BASE_URL}/images/project-3.png`,
-      tech: ["React", "Three.js", "React Three Fiber", "Drei"],
+      title: "Nexus Tech Portal",
+      genre: "Business Platform",
+      image: `${import.meta.env.BASE_URL}images/showcase/NT.png`,
+      tech: ["React", "TypeScript", "Next.js", "Tailwind CSS", "Prisma"],
       description:
-        "An immersive 3D interactive product customizer showcasing dynamic shadow projection, material manipulation, real-time light source movement, and detailed physics-based rendering.",
+        "A comprehensive portal offering agency services, interactive client calendars, automated invoicing systems, and secure document vaults.",
+    },
+    {
+      title: "Portfolio Designer",
+      genre: "Creative Sandbox",
+      image: `${import.meta.env.BASE_URL}images/showcase/PD.png`,
+      tech: ["React", "Three.js", "React Three Fiber", "Drei", "GSAP"],
+      description:
+        "An immersive 3D portfolio studio demonstrating shaders, interactive camera motions, light configuration controls, and custom model maps.",
+    },
+    {
+      title: "Ryde Grid Analytics",
+      genre: "Logistics Dashboard",
+      image: `${import.meta.env.BASE_URL}images/showcase/RG.png`,
+      tech: ["React", "Leaflet Maps", "Recharts", "Node.js", "Express"],
+      description:
+        "A real-time analytics hub mapping transit routes, driver dispatcher grids, regional demand hotspots, and trip completion metrics.",
+    },
+    {
+      title: "Shadow Craft Studio",
+      genre: "3D Customizer",
+      image: `${import.meta.env.BASE_URL}images/showcase/SC.png`,
+      tech: ["React", "Three.js", "React Three Fiber", "Drei", "Tailwind CSS"],
+      description:
+        "A photorealistic interactive 3D product customizer allowing dynamic material edits, lighting controls, and real-time shadow casting.",
     },
   ];
 
@@ -54,7 +83,7 @@ const Showcase = () => {
   const [isMobileOrTablet, setIsMobileOrTablet] = useState(false);
   const [wrapperHeight, setWrapperHeight] = useState("485px");
 
-  const radius = dimensions.width * 0.78; // Mathematically optimized cylinder radius
+  const radius = dimensions.width * 1.35; // Mathematically optimized cylinder radius for 8 cards
 
   const containerRef = useRef(null);
   const trackRef = useRef(null);
@@ -77,10 +106,10 @@ const Showcase = () => {
       setIsMobileOrTablet(w < 768); // side-by-side layout starts at md (768px)
 
       // Calculate wrapper height dynamically based on screen width
-      if (w < 450) {
-        setWrapperHeight("320px");
+      if (w < 550) {
+        setWrapperHeight("280px");
       } else if (w < 768) {
-        setWrapperHeight("380px");
+        setWrapperHeight("320px");
       } else if (w < 1024) {
         setWrapperHeight("400px");
       } else {
@@ -89,35 +118,41 @@ const Showcase = () => {
 
       let cardW = 460;
       if (w < 550) {
-        cardW = Math.round(Math.min(240, Math.max(160, w * 0.52))); // Extra compact on mobile under 550px
+        cardW = Math.round(Math.min(170, Math.max(160, w * 0.52))); // Extra compact on mobile under 550px
       } else if (w < 768) {
-        cardW = Math.round(Math.min(320, Math.max(240, w * 0.58))); // Compact card width on large mobile/tablet
+        cardW = Math.round(Math.min(180, Math.max(240, w * 0.58))); // Compact card width on large mobile/tablet
       } else {
         // Tablet and Desktop (w >= 768) - side-by-side layout when open:
         if (isDetailOpen) {
           if (w < 768) {
             cardW = 260; // Enlarge 3D cards on small tablets
           } else if (w < 900) {
-            cardW = 310; // Enlarge 3D cards on small tablets
+            cardW = 200; // Enlarge 3D cards on small tablets
           } else if (w < 1024) {
-            cardW = 380; // Enlarge 3D cards on medium tablets
+            cardW = 250; // Enlarge 3D cards on medium tablets
           } else if (w < 1280) {
-            cardW = 400; // Medium card for iPads and small desktops
+            cardW = 260; // Medium card for iPads and small desktops
           } else if (w < 1440) {
-            cardW = 480; // Large card
+            cardW = 360; // Large card
           } else {
-            cardW = 500; // Full desktop size when detail is open
+            cardW = 380; // Full desktop size when detail is open
           }
         } else {
           // Closed state sizing:
-          if (w < 1024) {
-            cardW = 380; // Normal tablet size when closed
+          if (w < 768) {
+            cardW = 180; // Normal mobile size when closed
+          } else if (w < 900) {
+            cardW = 240; // Normal tablet size when closed
+          } else if (w < 1024) {
+            cardW = 280; // Normal tablet size when closed
+          } else if (w < 1280) {
+            cardW = 320; // Medium card for iPads and small desktops
           } else {
-            cardW = 460; // Normal desktop size when closed
+            cardW = 360; // Normal desktop size when closed
           }
         }
       }
-      const cardH = Math.round(cardW * 0.58); // Maintain widescreen 16:9 aspect ratio
+      const cardH = Math.round(cardW * 0.628); // Match showcase images aspect ratio (approx 2940x1845)
       setDimensions({ width: cardW, height: cardH });
     };
 
@@ -320,7 +355,7 @@ const Showcase = () => {
           <div
             className={`project-detail-card ${
               !isMobileOrTablet && isDetailOpen
-                ? "w-full md:w-[35%] md:max-w-[260px] lg:max-w-[320px] h-[80%] lg:h-[90%] opacity-100 scale-100 border border-white/10"
+                ? "w-full md:w-[35%] md:max-w-[260px] lg:max-w-[320px] h-[75%] lg:h-[80%] xl:h-[90%] opacity-100 scale-100 border border-white/10"
                 : "w-0 max-w-0 opacity-0 scale-95 pointer-events-none border-transparent"
             }`}
           >
